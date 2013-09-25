@@ -38,4 +38,19 @@ int main() {
 
 	return 0;
 }
+
+//变形：变态台阶
+#include <stdio.h>
+
+int main(){
+    int n;
+    while (scanf("%d", &n) != EOF) {
+        long long v = 1;
+        while (--n) {
+            v *= 2;
+        }
+        printf("%lld\n", v);
+    }
+    return 0;
+}
 */

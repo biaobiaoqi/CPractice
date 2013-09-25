@@ -19,7 +19,7 @@ int main()
 	return 0;
 }
 
-/*
+
 //变型：台阶
 #include <stdio.h>
 int main() {
@@ -53,4 +53,23 @@ int main(){
     }
     return 0;
 }
-*/
+
+//变形题：矩形覆盖
+#include <stdio.h>
+
+int main(){
+    int n;
+    while (scanf("%d", &n) != EOF) {
+        long long prev = 1;
+        long long cur = 1;
+        long long tmp;
+        while (--n){
+            tmp = cur;
+            cur += prev;
+            prev = tmp;
+        }
+        printf("%lld\n", cur);
+    }
+}
+
+

@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main()
+{
+	//freopen("G:\in.txt", "r", stdin);
+	int n;
+	while(scanf("%d", &n) != EOF){
+		long long a = 0;
+		long long b = 1;
+		long long tmp;
+		while(--n){
+			tmp = b;
+			b = a + b;
+			a = tmp;
+		}
+		printf("%lld\n", b);
+	}
+	//fclose(stdin);
+	return 0;
+}

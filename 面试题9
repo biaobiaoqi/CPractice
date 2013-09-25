@@ -18,3 +18,24 @@ int main()
 	//fclose(stdin);
 	return 0;
 }
+
+/*
+//变型：台阶
+#include <stdio.h>
+int main() {
+	int n;
+	while (scanf("%d", &n) != EOF) {
+		long long pre = 1;
+		long long cur = 1;
+		long long tmp;
+		while(--n) {
+			tmp = cur;
+			cur += pre;
+			pre = tmp;
+		}
+		printf("%lld\n", cur);	
+	}
+
+	return 0;
+}
+*/

@@ -1,34 +1,28 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <algorithm>
+using namespace std;
 typedef  struct {
-    int tons;
+    double tons;
     double price;
     double unit_price;
 } moon_cake;
-moon_cake cakes[10001];
+moon_cake cakes[1001];
 
-int compare(const void *a, const void *b) {
-    moon_cake *aa = (moon_cake *)a;
-    moon_cake *bb = (moon_cake *)b;
-    if (bb->unit_price > aa->unit_price)
-        return 1;
-    else
-        return -1;
-
+bool compare(moon_cake a,moon_cake b) {
+    return  a.unit_price > b.unit_price;
 }
 
 int main(){
     int n, amount;
     scanf("%d %d", &n, &amount);
     for (int i = 0; i != n; ++ i)
-        scanf("%d", &cakes[i].tons);
+        scanf("%lf", &cakes[i].tons);
     for (int i = 0; i != n; ++ i) {
         scanf("%lf", &cakes[i].price);
         cakes[i].unit_price = cakes[i].price / cakes[i].tons;
     }
     
-    qsort(cakes, n, sizeof(moon_cake), compare);
-    //24, 20.83 22.2222
+    sort(cakes, cakes + n, compare);
     
     double ret = 0;
     for (int i = 0; i != n && amount > 0 ; ++ i) {
@@ -36,11 +30,10 @@ int main(){
             ret += cakes[i].price;
             amount -= cakes[i].tons;
         } else {
-            ret += cakes[i].price * amount / cakes[i].tons;
+            ret += (amount * 1.0/ cakes[i].tons) * cakes[i].price;
             amount = 0;
         }
     }
-    
     printf("%.2lf", ret);
     
     return 0;

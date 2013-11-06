@@ -2,26 +2,18 @@
 #include <algorithm>
 
 using namespace std;
-void itoa(int x, char *ar) {
-    int tmp = 1000;
-    for (int i = 0; i != 4; ++ i) {
-        ar[i] = x / tmp + '0';
-        x -= x / tmp * tmp;
-        tmp /= 10;
-    }
+
+int getLarge(int x, char str[5]) {
+    sprintf(str, "%04d", x);
+    sort(str, str + 4);
+    reverse(str, str + 4);
+    return atoi(str);
 }
 
-int getLarge(int x, char large[5]) {
-    itoa(x, large);
-    sort(large, large + 4);
-    reverse(large, large + 4);
-    return atoi(large);
-}
-
-int getSmall(int x, char small[5]) {
-    itoa(x, small);
-    sort(small, small + 4);
-    return atoi(small);
+int getSmall(int x, char str[5]) {
+    sprintf(str, "%04d", x);
+    sort(str, str + 4);
+    return atoi(str);
 }
 
 int iter(int x)
@@ -30,7 +22,7 @@ int iter(int x)
     large[4] = small[4] = result[4] = 0;
     int a = getLarge(x, large);
     int b = getSmall(x, small);
-    itoa(a - b, result);
+    sprintf(result, "%04d", a - b);
     cout << large << " - " << small << " = " <<  result << endl;
     return a - b;
 }
@@ -38,10 +30,10 @@ int iter(int x)
 int main() {
     int n;
     cin >> n;
-
+    
     do {
         n = iter(n);
     }while (n != 6174 && n != 0);
-
+    
     return 0;
 }
